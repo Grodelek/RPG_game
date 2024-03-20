@@ -1,19 +1,33 @@
 import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
         RPG_game game = new RPG_game();
-        char[][] plansza = new char[10][15];
+        char[][] board = new char[10][15];
         Hero hero = new Hero();
-        hero.pozycjaX = rand.nextInt(plansza.length);
-        hero.pozycjaY = plansza[0].length-1;
-        //Tworzenie planszy
-        game.stworzPlansze(plansza);
-        game.printRoom(plansza);
-        System.out.println();
-        //Umieszczanie bohatera na planszy
-        plansza[hero.pozycjaX][hero.pozycjaY] = hero.znak;
-        game.printRoom(plansza);
+        hero.pozycjaX = board.length-1;
+        hero.pozycjaY = rand.nextInt(board[0].length);
+        //Creating a board
+        game.stworzPlansze(board);
+        //Placing Hero on a board
+        board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
+        printRoom(board);
+        //Adding Hero movement
+        hero.heroMovement(board,hero);
+        printRoom(board);
+
+    }
+
+    public static void printRoom(char[][] board){
+        for(int i=0; i< board.length; i++){
+            for(int j=0; j< board[i].length; j++){
+                System.out.print(board[i][j]+" ");
+            }
+            System.out.println();
+        }
     }
 }
 
