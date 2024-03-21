@@ -8,6 +8,7 @@ public class Main {
         RPG_game game = new RPG_game();
         char[][] board = new char[10][15];
         Hero hero = new Hero();
+        boolean running = true;
         hero.pozycjaX = board.length-1;
         hero.pozycjaY = rand.nextInt(board[0].length);
         //Creating a board
@@ -16,9 +17,11 @@ public class Main {
         board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
         printRoom(board);
         //Adding Hero movement
-        hero.heroMovement(board,hero);
-        printRoom(board);
+      while(true) {
+          hero.heroMovement(board, hero);
+          printRoom(board);
 
+      }
     }
 
     public static void printRoom(char[][] board){
