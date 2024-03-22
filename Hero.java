@@ -6,12 +6,15 @@ public class Hero {
     int pozycjaX;
     int pozycjaY;
     HashMap<String, Integer> attributes = new HashMap<>();
+
     public void setAttributes(String attribute, int value) {
         attributes.put(attribute, value);
     }
+
     public int getAttributes(String attribute) {
         return attributes.getOrDefault(attribute, 0);
     }
+
     public void heroMovement(char[][] board, Hero hero) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Choose letter");
@@ -50,7 +53,30 @@ public class Hero {
                 }
             }catch (ArrayIndexOutOfBoundsException e){
                     System.out.println("Hero out of bounds exception");
-                }
             }
         }
+        public void heroStats(Hero hero){
+        hero.setAttributes("Level",1);
+        hero.setAttributes("Strength",10);
+        hero.setAttributes("Dexterity",7);
+        hero.setAttributes("Inteligence",5);
+        }
+        public void increaseAttribute(String attribute,int value){
+            if(attributes.containsKey(attribute)){
+                int currentValue = getAttributes(attribute);
+            attributes.put(attribute,currentValue + value);
+                System.out.println("Value increased: "+attribute+" by: "+value+" new value: "+(currentValue+value));
+            }else{
+                System.out.println("Attribute not found" +
+                        "");
+            }
+        }
+        public void getHeroStats(){
+            System.out.println("Level: "+getAttributes("Level"));
+            System.out.println("Strength:" +getAttributes("Strength"));
+            System.out.println("Dexterity:" +getAttributes("Dexterity"));
+            System.out.println("Inteligence:" +getAttributes("Inteligence"));
+        }
+        }
+
 
