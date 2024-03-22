@@ -8,13 +8,21 @@ public class Main {
         RPG_game game = new RPG_game();
         char[][] board = new char[10][15];
         Hero hero = new Hero();
-        boolean running = true;
+        Skeleton[] skeleton = new Skeleton[5];
+         boolean running = true;
         hero.pozycjaX = board.length-1;
         hero.pozycjaY = rand.nextInt(board[0].length);
         //Creating a board
         game.stworzPlansze(board);
         //Placing Hero on a board
         board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
+        //Placing Skeleton on a board
+        for(int i=0; i<skeleton.length; i++){
+            skeleton[i] = new Skeleton();
+            skeleton[i].setSkeletonPosition(board,skeleton);
+            board[skeleton[i].pozycjaX][skeleton[i].pozycjaY] = skeleton[i].znak;
+        }
+
         printRoom(board);
         //Adding Hero movement
       while(true) {
@@ -40,8 +48,6 @@ public class Main {
         }
     }
 }
-
-
 
 
 
