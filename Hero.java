@@ -57,6 +57,7 @@ public class Hero {
         }
         public void heroStats(Hero hero){
         hero.setAttributes("Level",1);
+        hero.setAttributes("Health",100);
         hero.setAttributes("Strength",10);
         hero.setAttributes("Dexterity",7);
         hero.setAttributes("Inteligence",5);
@@ -64,19 +65,28 @@ public class Hero {
         public void increaseAttribute(String attribute,int value){
             if(attributes.containsKey(attribute)){
                 int currentValue = getAttributes(attribute);
-            attributes.put(attribute,currentValue + value);
+                attributes.put(attribute,currentValue + value);
+                //Tutaj zrobic limit zycia
                 System.out.println("Value increased: "+attribute+" by: "+value+" new value: "+(currentValue+value));
-            }else{
-                System.out.println("Attribute not found" +
-                        "");
+            }
+           else{
+                System.out.println("Attribute not found");
             }
         }
+    public void decreaseAttribute(String attribute,int value){
+        if(attributes.containsKey(attribute)){
+            int currentValue = getAttributes(attribute);
+            attributes.put(attribute,currentValue - value);
+            System.out.println("Value increased: "+attribute+" by: "+value+" new value: "+(currentValue+value));
+        }else{
+            System.out.println("Attribute not found");
+        }
+    }
         public void getHeroStats(){
             System.out.println("Level: "+getAttributes("Level"));
+            System.out.println("Health:" +getAttributes("Health"));
             System.out.println("Strength:" +getAttributes("Strength"));
             System.out.println("Dexterity:" +getAttributes("Dexterity"));
             System.out.println("Inteligence:" +getAttributes("Inteligence"));
         }
-        }
-
-
+}
