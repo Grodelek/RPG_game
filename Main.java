@@ -9,33 +9,40 @@ public class Main {
         char[][] board = new char[10][15];
         Hero hero = new Hero();
         Skeleton[] skeleton = new Skeleton[5];
-         boolean running = true;
-        hero.pozycjaX = board.length-1;
+        boolean running = true;
+        hero.pozycjaX = board.length - 1;
         hero.pozycjaY = rand.nextInt(board[0].length);
         //Creating a board
         game.stworzPlansze(board);
         //Placing Hero on a board
         board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
         //Placing Skeleton on a board
-        for(int i=0; i<skeleton.length; i++){
+        for (int i = 0; i < skeleton.length; i++) {
             skeleton[i] = new Skeleton();
-            skeleton[i].setSkeletonPosition(board,skeleton);
+            skeleton[i].setSkeletonPosition(board, skeleton);
             board[skeleton[i].pozycjaX][skeleton[i].pozycjaY] = skeleton[i].znak;
         }
 
         printRoom(board);
         //Adding Hero movement
-      while(true) {
-          hero.heroMovement(board, hero);
-          space();
-          hero.heroStats(hero);
-          hero.getHeroStats();
-          printRoom(board);
-      }
+        while (running == true) {
+            hero.heroMovement(board, hero);
+            space();
+            hero.heroStats(hero);
+            hero.getHeroStats();
+            printRoom(board);
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[i].length; j++) {
+                    if (board[hero.pozycjaX][hero.pozycjaY] == board[0][j]) {
+                        running = false;
+                    }
+                }
+            }
+        }
     }
 
     public static void printRoom(char[][] board){
-         for(int i=0; i< board.length; i++){
+        for(int i=0; i< board.length; i++){
             for(int j=0; j< board[i].length; j++){
                 System.out.print(board[i][j]+" ");
             }
@@ -48,6 +55,4 @@ public class Main {
         }
     }
 }
-
-
 
