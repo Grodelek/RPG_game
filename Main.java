@@ -17,12 +17,7 @@ public class Main {
         //Placing Hero on a board
         board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
         //Placing Skeleton on a board
-        for (int i = 0; i < skeleton.length; i++) {
-            skeleton[i] = new Skeleton();
-            skeleton[i].setSkeletonPosition(board, skeleton);
-            board[skeleton[i].pozycjaX][skeleton[i].pozycjaY] = skeleton[i].znak;
-        }
-
+        Skeleton.setSkeletonPosition(board,skeleton);
         printRoom(board);
         //Adding Hero movement
         while (running == true) {
@@ -31,16 +26,14 @@ public class Main {
             hero.heroStats(hero);
             hero.getHeroStats();
             printRoom(board);
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[i].length; j++) {
-                    if (board[hero.pozycjaX][hero.pozycjaY] == board[0][j]) {
-                        running = false;
-                    }
+            for(int i=0; i<5; i++){
+                if(board[hero.pozycjaX][hero.pozycjaY] == board[skeleton[i].pozycjaX[i]][skeleton[i].pozycjaY[i]]){
+                    System.out.println("Hero attacked by skeleton");
                 }
             }
+          running = meta(board,hero);
         }
     }
-
     public static void printRoom(char[][] board){
         for(int i=0; i< board.length; i++){
             for(int j=0; j< board[i].length; j++){
@@ -54,5 +47,15 @@ public class Main {
             System.out.println();
         }
     }
+    public static boolean meta(char[][] board,Hero hero){
+        boolean running = true;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if(board[0][j] == hero.znak){
+                    running = false;
+                }
+            }
+        }
+        return running;
+    }
 }
-
