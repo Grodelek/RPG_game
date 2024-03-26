@@ -2,17 +2,18 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Skeleton {
-    char znak = 'S';
-    int pozycjaX;
-    int pozycjaY;
-    HashMap<String, Integer> attributes = new HashMap<>();
 
-    public void setSkeletonPosition(char[][] board,Skeleton[] skeleton){
+    char znak = 'S';
+    int[] pozycjaX = new int[10];
+    int[] pozycjaY = new int[15];
+    HashMap<String, Integer> attributes = new HashMap<>();
+    public static void setSkeletonPosition(char[][] board,Skeleton[] skeleton){
         Random rand = new Random();
         for(int i=0; i<skeleton.length; i++){
             skeleton[i] = new Skeleton();
-            skeleton[i].pozycjaX = rand.nextInt(board.length);
-            skeleton[i].pozycjaY = rand.nextInt(board[0].length);
+            skeleton[i].pozycjaX[i] = rand.nextInt(board.length);
+            skeleton[i].pozycjaY[i] = rand.nextInt(board[0].length);
+            board[skeleton[i].pozycjaX[i]][skeleton[i].pozycjaY[i]] = skeleton[i].znak;
         }
     }
 
