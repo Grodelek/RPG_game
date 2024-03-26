@@ -20,15 +20,19 @@ public class Main {
         Skeleton.setSkeletonPosition(board,skeleton);
         printRoom(board);
         //Adding Hero movement
-        while (running == true) {
+        while (running) {
             hero.heroMovement(board, hero);
             space();
             hero.heroStats(hero);
+
             hero.getHeroStats();
             printRoom(board);
             for(int i=0; i<5; i++){
+                skeleton[i].skeletonStats(skeleton);
                 if(board[hero.pozycjaX][hero.pozycjaY] == board[skeleton[i].pozycjaX[i]][skeleton[i].pozycjaY[i]]){
                     System.out.println("Hero attacked by skeleton");
+                    hero.decreaseAttribute("Health",(int)(skeleton[i].getAttributes("Damage")));
+                    hero.getHeroStats();
                 }
             }
           running = meta(board,hero);
