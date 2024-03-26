@@ -2,7 +2,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Skeleton {
-
     char znak = 'S';
     int[] pozycjaX = new int[10];
     int[] pozycjaY = new int[15];
@@ -14,6 +13,12 @@ public class Skeleton {
             skeleton[i].pozycjaX[i] = rand.nextInt(board.length);
             skeleton[i].pozycjaY[i] = rand.nextInt(board[0].length);
             board[skeleton[i].pozycjaX[i]][skeleton[i].pozycjaY[i]] = skeleton[i].znak;
+        }
+    }
+    public void skeletonStats(Skeleton[] skeleton){
+        for(int i=0; i < skeleton.length; i++) {
+            skeleton[i].setAttributes("Health", 10);
+            skeleton[i].setAttributes("Damage", 2);
         }
     }
 
