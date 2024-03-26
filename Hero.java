@@ -24,55 +24,55 @@ public class Hero {
             switch (move){
                 case 'W':
                 case 'w':
-                        board[hero.pozycjaX][pozycjaY] = '.';
-                        hero.pozycjaX = hero.pozycjaX - 1;
-                        board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
-                        break;
+                    board[hero.pozycjaX][pozycjaY] = '.';
+                    hero.pozycjaX = hero.pozycjaX - 1;
+                    board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
+                    break;
                 case 'A':
                 case 'a':
 
-                        board[hero.pozycjaX][pozycjaY] = '.';
-                        hero.pozycjaY = hero.pozycjaY - 1;
-                        board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
-                        break;
+                    board[hero.pozycjaX][pozycjaY] = '.';
+                    hero.pozycjaY = hero.pozycjaY - 1;
+                    board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
+                    break;
                 case 'S':
                 case 's':
-                        board[hero.pozycjaX][pozycjaY] = '.';
-                        hero.pozycjaX = hero.pozycjaX + 1;
-                        board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
-                        break;
+                    board[hero.pozycjaX][pozycjaY] = '.';
+                    hero.pozycjaX = hero.pozycjaX + 1;
+                    board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
+                    break;
                 case 'D':
                 case 'd':
-                        board[hero.pozycjaX][pozycjaY] = '.';
-                        hero.pozycjaY = hero.pozycjaY + 1;
-                        board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
-                        break;
+                    board[hero.pozycjaX][pozycjaY] = '.';
+                    hero.pozycjaY = hero.pozycjaY + 1;
+                    board[hero.pozycjaX][hero.pozycjaY] = hero.znak;
+                    break;
                 default:
-                        System.out.println("No action assigned to this key");
-                        break;
-                }
-            }catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Hero out of bounds exception");
+                    System.out.println("No action assigned to this key");
+                    break;
             }
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Hero out of bounds exception");
         }
-        public void heroStats(Hero hero){
+    }
+    public void heroStats(Hero hero){
         hero.setAttributes("Level",1);
         hero.setAttributes("Health",100);
         hero.setAttributes("Strength",10);
         hero.setAttributes("Dexterity",7);
         hero.setAttributes("Inteligence",5);
+    }
+    public void increaseAttribute(String attribute,int value){
+        if(attributes.containsKey(attribute)){
+            int currentValue = getAttributes(attribute);
+            attributes.put(attribute,currentValue + value);
+            //Tutaj zrobic limit zycia
+            System.out.println("Value increased: "+attribute+" by: "+value+" new value: "+(currentValue+value));
         }
-        public void increaseAttribute(String attribute,int value){
-            if(attributes.containsKey(attribute)){
-                int currentValue = getAttributes(attribute);
-                attributes.put(attribute,currentValue + value);
-                //Tutaj zrobic limit zycia
-                System.out.println("Value increased: "+attribute+" by: "+value+" new value: "+(currentValue+value));
-            }
-           else{
-                System.out.println("Attribute not found");
-            }
+        else{
+            System.out.println("Attribute not found");
         }
+    }
     public void decreaseAttribute(String attribute,int value){
         if(attributes.containsKey(attribute)){
             int currentValue = getAttributes(attribute);
@@ -82,11 +82,11 @@ public class Hero {
             System.out.println("Attribute not found");
         }
     }
-        public void getHeroStats(){
-            System.out.println("Level: "+getAttributes("Level"));
-            System.out.println("Health:" +getAttributes("Health"));
-            System.out.println("Strength:" +getAttributes("Strength"));
-            System.out.println("Dexterity:" +getAttributes("Dexterity"));
-            System.out.println("Inteligence:" +getAttributes("Inteligence"));
-        }
+    public void getHeroStats(){
+        System.out.println("Level: "+getAttributes("Level"));
+        System.out.println("Health:" +getAttributes("Health"));
+        System.out.println("Strength:" +getAttributes("Strength"));
+        System.out.println("Dexterity:" +getAttributes("Dexterity"));
+        System.out.println("Inteligence:" +getAttributes("Inteligence"));
+    }
 }
